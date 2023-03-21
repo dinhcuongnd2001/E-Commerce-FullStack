@@ -1,6 +1,8 @@
 # dependencies
 **/node_modules
-/.pnp
+**/.env
+note.txt
+/.pnpq
 .pnp.js
 
 # testing
