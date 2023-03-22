@@ -26,5 +26,19 @@ const { checkOverload } = require("./helper/checkConnect");
 app.use("/", require("./routes/index"));
 
 // Handle Error
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  return res.status(status).json({
+    status: "error",
+    code: status,
+    message: err.message || "Internal Server Error",
+  });
+});
 
 module.exports = app;

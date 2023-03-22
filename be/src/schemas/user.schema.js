@@ -25,11 +25,11 @@ var UserSchema = new Schema({
   resetPassTokenExp: String,
 });
 
-UserSchema.pre("save", async function () {
+UserSchema.pre("save", async function (next) {
   const saltRound = 10;
   const newPassword = await bcrypt.hash(this.password, saltRound);
   this.password = newPassword;
-  console.log("called in encrypt");
+  next();
 });
 
 //Export the model

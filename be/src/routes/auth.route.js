@@ -3,19 +3,13 @@ const express = require("express");
 const router = express.Router();
 const authValidate = require("../validate/auth/register.validate");
 const checkValidate = require("../middleware/checkValidate");
-const authModel = require("../models/auth.model");
-const HandleObject = require("../utils/HandleObject");
+const AuthController = require("../controllers/auth.controller");
+const { asyncHandler } = require("../middleware/handleError");
 router.post(
   "/register",
   authValidate.validationRegister(),
   checkValidate.checkValidate,
-  async (req, res, next) => {
-    const newUser = await authModel.register(req.body);
-    res.status(200).json({
-      message: "ok",
-      data: HandleObject.getField(newUser, ["name", "email"]),
-    });
-  }
+  asyncHandler(AuthController.register)
 );
 
 module.exports = router;
