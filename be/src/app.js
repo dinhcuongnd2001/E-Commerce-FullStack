@@ -13,21 +13,17 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(compression());
 app.use(cors());
+app.use(express.json());
 
 // Connect DataBase
 
 require("./dbs/init.mongodb");
 const { checkOverload } = require("./helper/checkConnect");
 // checkOverload();
+
 // Router
 
-app.get("/", (req, res, next) => {
-  const strShow = "Hello ae";
-  return res.status(500).json({
-    message: "welcome back",
-    metadata: strShow.repeat(10000),
-  });
-});
+app.use("/", require("./routes/index"));
 
 // Handle Error
 
