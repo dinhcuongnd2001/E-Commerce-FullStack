@@ -1,7 +1,7 @@
 const _ = require("lodash");
 
 module.exports = {
-  getField: (obj = {}, field = []) => {
+  getData: (obj = {}, field = []) => {
     return _.pick(obj, field);
   },
 };

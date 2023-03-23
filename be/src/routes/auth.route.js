@@ -1,15 +1,24 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const authValidate = require("../validate/auth/register.validate");
-const checkValidate = require("../middleware/checkValidate");
+const { validationRegister } = require("../validate/auth/register.validate");
+const { validationLogin } = require("../validate/auth/login.validate");
+const { checkValidate } = require("../middleware/checkValidate");
 const AuthController = require("../controllers/auth.controller");
 const { asyncHandler } = require("../middleware/handleError");
+
 router.post(
   "/register",
-  authValidate.validationRegister(),
-  checkValidate.checkValidate,
+  validationRegister(),
+  checkValidate,
   asyncHandler(AuthController.register)
+);
+
+router.post(
+  "/login",
+  validationLogin(),
+  checkValidate,
+  asyncHandler(AuthController.login)
 );
 
 module.exports = router;
