@@ -31,7 +31,7 @@ function App() {
   //   debounceDropDown(value);
   // }
   return (
-    <div>
+    <div className="w-full h-full">
       <Login></Login>
     </div>
   );

@@ -7,13 +7,11 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 axios.interceptors.response.use(
   (response) => {
-    console.log("response :: ", response);
     return response.data ? response.data : response;
   },
   (error) => {
-    console.log("error :: ", error);
     const { message } = error.response.data;
-    return new Promise.reject(message);
+    return Promise.reject(message);
   }
 );
 
