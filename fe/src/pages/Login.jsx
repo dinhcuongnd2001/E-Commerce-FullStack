@@ -6,12 +6,14 @@ import LockIcon from "@mui/icons-material/Lock";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GoogleIcon from "@mui/icons-material/Google";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { authAction } from "../auth/auth.action";
 function LoginComponent() {
-  console.log("re-render");
   const RefEmail = useRef();
   const RefPassword = useRef();
   const [error, setError] = useState("");
+  const [visibalePass, setVisibalePass] = useState(false);
   const {
     register,
     handleSubmit,
@@ -93,10 +95,17 @@ function LoginComponent() {
                     "Minimum eight characters, at least one letter, one number and one special character",
                 },
               })}
-              className="outline-none border-none text-base bg-transparent p-4 placeholder:font-Popins placeholder:font-semibold"
+              className="w-[85%] outline-none border-none text-base bg-transparent p-4 placeholder:font-Popins placeholder:font-semibold"
               placeholder="Type Your Password"
-              type="password"
+              type={visibalePass ? "text" : "password"}
             />
+            <div onClick={() => setVisibalePass(!visibalePass)}>
+              {visibalePass ? (
+                <RemoveRedEyeOutlinedIcon></RemoveRedEyeOutlinedIcon>
+              ) : (
+                <VisibilityOffOutlinedIcon></VisibilityOffOutlinedIcon>
+              )}
+            </div>
           </div>
         </div>
         <div>
