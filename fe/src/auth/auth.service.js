@@ -3,9 +3,8 @@ import { APIClient } from "../helper/Api.helper";
 const api = new APIClient();
 
 export const getLoggedInUser = () => {
-  const user = localStorage.getItem("token");
-  if (user) return JSON.parse(user);
-  return null;
+  const token = localStorage.getItem("token");
+  return token ? token : null;
 };
 
 // //is user is logged in

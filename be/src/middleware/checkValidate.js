@@ -10,7 +10,7 @@ module.exports = {
       //   return
       //   [each.param]: each.msg,
       // });
-      let strError = `${[err.array()[0].param]}:${err.array()[0].msg}`;
+      let strError = `${err.array()[0].msg}`;
       throw new ConflictRequestError(strError);
     }
     next();

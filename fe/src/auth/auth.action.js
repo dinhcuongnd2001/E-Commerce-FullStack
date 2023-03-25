@@ -4,6 +4,7 @@ export function authAction() {
   const baseUrl = `${process.env.REACT_APP_SERVER_URL}`;
   return {
     login,
+    register,
   };
 
   function login({ email, password }) {
@@ -16,6 +17,16 @@ export function authAction() {
       })
       .catch((err) => {
         return Promise.reject(err);
+      });
+  }
+  function register({ name, email, password }) {
+    return Register(baseUrl + "/auth/register", { name, email, password })
+      .then((result) => {
+        const cuccessfull = result.metadata ? true : false;
+        return cuccessfull;
+      })
+      .catch((e) => {
+        return Promise.reject(e);
       });
   }
 }
