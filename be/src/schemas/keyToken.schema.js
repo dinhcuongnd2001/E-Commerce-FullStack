@@ -21,8 +21,12 @@ var KeyTokenSchema = new Schema({
     required: true,
   },
   refreshToken: {
+    type: String,
+    require: true,
+  },
+  refreshTokensUsed: {
     type: Array,
-    default: [],
+    default: [], // nhung refresh token da su dung
   },
 });
 

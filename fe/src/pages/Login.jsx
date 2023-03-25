@@ -150,7 +150,12 @@ function LoginComponent() {
         </div>
         <div className="text-center mt-10 font-Popins">
           <p className="text-sm text-[#666666]">Or Sign Up Using</p>
-          <p className="mt-5 text-[#333] cursor-pointer hover:opacity-90 tracking-widest">
+          <p
+            onClick={() => {
+              navigate("/auth/register");
+            }}
+            className="mt-5 text-[#333] cursor-pointer hover:opacity-90 tracking-widest"
+          >
             SIGN UP
           </p>
         </div>

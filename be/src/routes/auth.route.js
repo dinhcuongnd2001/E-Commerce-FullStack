@@ -6,6 +6,7 @@ const { validationLogin } = require("../validate/auth/login.validate");
 const { checkValidate } = require("../middleware/checkValidate");
 const AuthController = require("../controllers/auth.controller");
 const { asyncHandler } = require("../middleware/handleError");
+const { authetication } = require("../auth/authUtil");
 
 router.post(
   "/register",
@@ -20,5 +21,9 @@ router.post(
   checkValidate,
   asyncHandler(AuthController.login)
 );
+
+// authentication
+router.use(authetication);
+router.post("/logout", asyncHandler(AuthController.logout));
 
 module.exports = router;

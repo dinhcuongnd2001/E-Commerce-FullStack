@@ -19,6 +19,10 @@ var UserSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "user",
+  },
   resetPassToken: {
     type: String,
   },

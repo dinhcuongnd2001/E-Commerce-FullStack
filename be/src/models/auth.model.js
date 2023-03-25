@@ -2,8 +2,8 @@
 const bcrpyt = require("bcrypt");
 const UserSchema = require("../schemas/user.schema");
 const crypto = require("crypto");
-const { BadRequestError } = require("../core/error.response");
-const KeyTokenModel = require("./keyToken.model");
+const { AuthFailureError } = require("../core/error.response");
+const { createKeyToken, removeKeyById } = require("./keyToken.model");
 const { createTokenPair } = require("../auth/authUtil");
 const { getData } = require("../utils/HandleObject");
 
@@ -15,21 +15,14 @@ module.exports = {
 
   login: async ({ email, password }) => {
     const user = await UserSchema.findOne({ email }).lean();
-    if (!user) throw new BadRequestError("The Email or Password is not true");
+    if (!user) throw new AuthFailureError("The Email or Password is not true");
     const match = await bcrpyt.compare(password, user.password);
-    if (!match) throw new BadRequestError("The Email or Password is not true");
+    if (!match) throw new AuthFailureError("The Email or Password is not true");
 
     // create key pair to create JWT
     const keyToAccess = crypto.randomBytes(64).toString("hex");
     const keyToRefresh = crypto.randomBytes(64).toString("hex");
     // console.table([keyToAccess, keyToRefresh]);
-
-    const keyStore = await KeyTokenModel.createKeyToken({
-      userId: user._id,
-      keyToAccess,
-      keyToRefresh,
-    });
-    if (!keyStore) throw new BadRequestError("Create Key Error");
 
     // creat token pair
     const { accessToken, refreshToken } = await createTokenPair(
@@ -37,10 +30,26 @@ module.exports = {
       keyToAccess,
       keyToRefresh
     );
+    // Save to db
+    const keyStore = await createKeyToken({
+      userId: user._id,
+      keyToAccess,
+      keyToRefresh,
+      refreshToken,
+    });
+    if (!keyStore) throw new BadRequestError("Create Key Error");
+
     return {
-      user: getData(user, ["name", "email"]),
+      user: getData(user, ["_id", "name", "email"]),
       accessToken,
       refreshToken,
     };
+  },
+
+  // logout:
+  logout: async (keyStore) => {
+    const keyDel = await removeKeyById(keyStore._id);
+    console.log("keydel :: ", keyDel);
+    return keyDel;
   },
 };
