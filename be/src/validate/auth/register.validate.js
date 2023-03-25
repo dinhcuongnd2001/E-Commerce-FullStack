@@ -8,7 +8,7 @@ module.exports = {
       .withMessage("The length of the name must be at least 4 characters."),
     body("email")
       .isEmail()
-      .withMessage("Must be an Email")
+      .withMessage("Username must be an Email")
       .custom(async (value) => {
         console.log("value::", value);
         const user = await UserSchema.findOne({ email: value }).lean();
@@ -18,7 +18,7 @@ module.exports = {
     body("password")
       .matches("^(?=.*?[a-z])(?=.*[@$!%*#?&])(?=.*?[0-9]).{8,}$")
       .withMessage(
-        "Minimum eight characters, at least one letter, one number and one special character"
+        "Password: Minimum eight characters, at least one letter, one number and one special character"
       ),
   ],
 };
