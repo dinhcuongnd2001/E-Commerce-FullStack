@@ -14,7 +14,15 @@ class AuthController {
 
   login = async (req, res, next) => {
     const metadata = await authModel.login(req.body);
-    console.log("metadata :: ", metadata);
+    // console.log("metadata :: ", metadata);
+    new OK({
+      message: "Login Successfully",
+      metadata,
+    }).send(res);
+  };
+
+  logout = async (req, res, next) => {
+    const metadata = await authModel.logout(req.keyStore);
     new OK({
       message: "Login Successfully",
       metadata,
