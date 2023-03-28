@@ -49,7 +49,6 @@ module.exports = {
   // logout:
   logout: async (keyStore) => {
     const keyDel = await removeKeyById(keyStore._id);
-    console.log("keydel :: ", keyDel);
     return keyDel;
   },
 };

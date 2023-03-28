@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Adidas Pro-vip 2021",
+    "color": ["red", "blue"],
+    "price": 1300000,
+    "price_old": 1500000,
+    "description": "",
+    "category": {
+      "id": "64228facf43d127490024342",
+      "name": "giay nam"
+    },
+    "brand": {
+      "id": "6422909ff347dd2bc629cc4e",
+      "name": "adidas"
+    },
+    "size": ["s", "m"]
+  },
+  {
+    "name": "Nike Pro-vip 2021",
+    "color": ["red", "blue"],
+    "price": 1300000,
+    "price_old": 1500000,
+    "description": "",
+    "category": {
+      "id": "64228facf43d127490024342",
+      "name": "giay nam"
+    },
+    "brand": {
+      "id": "6422909ff347dd2bc629cc4f",
+      "name": "nike"
+    },
+    "size": ["s", "m"]
+  },
+  {
+    "name": "Nike Pro-vip 2021",
+    "color": ["red", "blue"],
+    "price": 1300000,
+    "price_old": 1500000,
+    "description": "",
+    "category": {
+      "id": "64228facf43d127490024342",
+      "name": "giay nam"
+    },
+    "brand": {
+      "id": "6422909ff347dd2bc629cc50",
+      "name": "nike"
+    },
+    "size": ["s", "m"]
+  }
+]

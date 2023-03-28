@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Giầy Nam",
+    "title": "Giầy cho phái mạnh",
+    "slug": "giay-nam"
+  },
+  {
+    "name": "Giầy Nữ",
+    "title": "Giầy cho phái đẹp",
+    "slug": "giay-nu"
+  },
+  {
+    "name": "Giầy Thể Thao",
+    "title": "Giầy Thể Thao",
+    "slug": "giay-the-thao"
+  }
+]
